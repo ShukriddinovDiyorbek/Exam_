@@ -11,7 +11,6 @@ import uz.pdp.listview1.R
 import uz.pdp.listview1.model.Member
 
 class CustomAdapter(val members: List<Member>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    public var isEnd = false
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_rv, parent, false)
         return CustomViewHolder(view)
@@ -27,9 +26,7 @@ class CustomAdapter(val members: List<Member>): RecyclerView.Adapter<RecyclerVie
             holder.ratingbar.setRating(member.rate.toFloat())
 
         }
-        if (position == members.size){
-            isEnd = true
-        }
+
     }
 
 

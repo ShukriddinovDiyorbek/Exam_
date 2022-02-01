@@ -29,14 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (adapter.isEnd) {
-            adapter.isEnd = false
-            refreshAdapter(preparedList())
-            Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT).show()
-        }
-    }
+
     fun initViews(){
         recycler_view = findViewById(R.id.recycler_view)
 
