@@ -18,6 +18,7 @@ class CustomAdapter(val members: List<Member>): RecyclerView.Adapter<RecyclerVie
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val member = members[position]
+
         if(holder is CustomViewHolder){
             holder.img_rv.setImageResource(member.img_rv)
             holder.title_rv.setText(member.title_rv)
