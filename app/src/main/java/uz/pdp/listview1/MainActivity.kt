@@ -18,6 +18,7 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     lateinit var recycler_view: RecyclerView
+    lateinit var adapter: CustomAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,6 +26,16 @@ class MainActivity : AppCompatActivity() {
         initViews()
         val members = preparedList()
         refreshAdapter(members)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (adapter.isEnd) {
+            adapter.isEnd = false
+            refreshAdapter(preparedList())
+            Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT).show()
+        }
     }
     fun initViews(){
         recycler_view = findViewById(R.id.recycler_view)
@@ -37,35 +48,35 @@ class MainActivity : AppCompatActivity() {
         } else {
             recycler_view.layoutManager = GridLayoutManager(this, 1)
         }
-
     }
     fun refreshAdapter(members: List<Member>){
-        val adapter = CustomAdapter(members)
+        adapter = CustomAdapter(members)
         recycler_view.adapter = adapter
     }
     fun preparedList(): List<Member>{
         val members = ArrayList<Member>()
         for (i in 0..30){
             if(i % 7 == 0) {
-                members.add(Member(R.drawable.img1, "Ssushi", "Tashkent", "$5", 2.5))
+                members.add(Member(R.drawable.img1, "Ssushi", "Tashkent", "$5", 1.5))
             }
             if(i % 7 == 1) {
-                members.add(Member(R.drawable.img2, "Ssushi", "Tashkent", "$5", 2.5))
+                members.add(Member(R.drawable.img2, "Fire Hyper", "Samarkand", "$4.3", 2.5
+                ))
             }
             if(i % 7 == 2) {
-                members.add(Member(R.drawable.img3, "Ssushi", "Tashkent", "$5", 2.5))
+                members.add(Member(R.drawable.img3, "Deli Turbo", "Bukhara", "$2.4", 4.9))
             }
             if(i % 7 == 3) {
-                members.add(Member(R.drawable.img4, "Ssushi", "Tashkent", "$5", 2.5))
+                members.add(Member(R.drawable.img4, "Staekhouse", "Jizzakh", "$10", 2.7))
             }
             if(i % 7 == 4) {
-                members.add(Member(R.drawable.img5, "Ssushi", "Tashkent", "$5", 2.5))
+                members.add(Member(R.drawable.img5, "Deli Hyper", "Navoi", "$2.3", 4.5))
             }
             if(i % 7 == 5) {
-                members.add(Member(R.drawable.img6, "Ssushi", "Tashkent", "$5", 2.5))
+                members.add(Member(R.drawable.img6, "Dinner steak", "Fergana", "$2.0", 5.0))
             }
             if(i % 7 == 6) {
-                members.add(Member(R.drawable.img1, "Ssushi", "Tashkent", "$5", 2.5))
+                members.add(Member(R.drawable.img1, "Lagman", "Namangan", "$4", 3.5))
             }
         }
         return members
